@@ -380,6 +380,7 @@ async def execute_orders_internal():
                 int(order['encrypted_order_value']), app.distribute_scema[0])
             decrypted_order_value = await decrypt_all_orders([encrypted_order_value])
             order['encrypted_order_value'] = abs(int(decrypted_order_value[0]))
+        # @todo- uncomment
         # await execute_matched_orders(matched_orders)
         # save_orders([])
         print("matched_orders", matched_orders, "remaining_orders", [])
@@ -410,6 +411,7 @@ async def execute_orders_internal():
 
     matched_orders, updated_orders = await binary_search_and_partial_decrypt(cumulative_sums, smaller_sum, matched_orders, larger_orders)
     print("matched_orders", matched_orders, "remaining_orders", updated_orders)
+    # @todo- uncomment
     # await execute_matched_orders(matched_orders)
     # save_orders(updated_orders)
     return {"matched_orders": matched_orders, "remaining_orders": updated_orders}
@@ -460,8 +462,7 @@ async def execute_matched_orders(request: List[dict]):
                 'nonce': nonce,
             })
 
-            print('txn', txn)
-
+            # @todo- uncomment for execution
             # signed_txn = w3.eth.account.sign_transaction(txn, app.config['PRIVATE_KEY'])
             # tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
             # print(f"Sent order to {order['chain']} chain, tx hash: {tx_hash.hex()}")
