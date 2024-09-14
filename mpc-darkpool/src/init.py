@@ -50,7 +50,7 @@ distributed_paillier_schemes = loop.run_until_complete(
 print("The protocol has completed.")
 
 print(distributed_paillier_schemes[0].public_key.serialize())
-with open('src/store/publickey.json', 'w') as f:
+with open('store/publickey.json', 'w') as f:
     json.dump(distributed_paillier_schemes[0].public_key.serialize(), f)
 # print(distributed_paillier_scheme.serialize_with_secret_key())
 # daa = DistributedPaillier.serialize_with_secret_key(distributed_paillier_scheme)
@@ -68,7 +68,7 @@ for party_number in range(PARTIES):
         'paillier': paillier_data,
         'shares': distributed_paillier_scheme.shares
     }
-    with open(f"src/store/{party_number}.pkl", 'wb') as file:
+    with open(f"store/{party_number}.pkl", 'wb') as file:
         pickle.dump(data, file)
 
 # for party_number in range(PARTIES):
